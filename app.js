@@ -8,6 +8,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 const database = require('./database');
 const klawSync = require('klaw-sync');
+const cors = require('cors')
 
 const { models, sequelize } = database;
 const config = require('config');
@@ -34,6 +35,7 @@ app.set('models', models);
 app.set('sequelize', sequelize);
 
 app.use(logger('dev'));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
