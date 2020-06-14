@@ -13,10 +13,8 @@ module.exports = inputValidator = (source, format) => {
       if (!(value === 0 || value === false || !!value)) {
         if (required) {
           return next(new Error(`The '${key}' property is required.`));
-        }
+        } else continue;
       }
-
-      console.log('Required passed')
 
       if (type === 'STRING') {
         if (typeof value !== 'string') {
@@ -30,8 +28,6 @@ module.exports = inputValidator = (source, format) => {
           return next(new Error(`The value of '${key}' must be number.`));
         }
       }
-
-      console.log('It\'s Okay');
 
       if (pattern) {
         if (!pattern.test(value)) {
